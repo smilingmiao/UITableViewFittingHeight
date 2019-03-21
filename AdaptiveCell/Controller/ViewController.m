@@ -18,6 +18,10 @@
 @property (nonatomic, strong) FeedHolder *feedHolder;
 @property (nonatomic, assign) BOOL isUseXib;
 
+@property (nonatomic, weak) UITextField *bookTextField;
+@property (nonatomic, weak) UITextField *summaryTextField;
+@property (nonatomic, weak) UIAlertAction *confirmAction;
+
 @end
 
 @implementation ViewController
@@ -27,29 +31,20 @@ static NSString * const cellID = @"adaptiveCell";
 #pragma mark - life circle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"Books";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem)];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleFeedsChange:)
+                                                 name:kFeedsChangedNotificationName
+                                               object:nil];
+    
     [self.view addSubview:self.tableView];
 
     /// 注册 xib 还是纯代码，其中纯代码又分用 Masonry 和用 iOS 自带 AutoLayout，这个需要在 `PureCodeTableViewCell` 中设置。
     [self registerWithXib:NO];
     
     self.feedHolder = [[FeedHolder alloc] init];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleFeedsChange:)
-                                                 name:kFeedsChangedNotificationName
-                                               object:nil];
-    
     [self.feedHolder buildData];
-    
-    self.navigationItem.rightBarButtonItems = @[
-        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                      target:self
-                                                      action:@selector(addItem)],
-        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
-                                                      target:self
-                                                      action:@selector(delete)]
-        ];
-    
 }
 
 - (void)viewWillLayoutSubviews
@@ -78,16 +73,47 @@ static NSString * const cellID = @"adaptiveCell";
 
 - (void)addItem
 {
-    if (self.feedHolder.feeds.count > 0) {
-        Feed *feed = self.feedHolder.feeds.lastObject;
-        [self.feedHolder addFeed:feed atIndex:1];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"增加条目" message:@"填写书名和简介" preferredStyle:UIAlertControllerStyleAlert];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"请填写书名";
+        [textField addTarget:self action:@selector(inputText:) forControlEvents:UIControlEventEditingChanged];
+        self.bookTextField = textField;
+    }];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"请填写简介";
+        [textField addTarget:self action:@selector(inputText:) forControlEvents:UIControlEventEditingChanged];
+        self.summaryTextField = textField;
+    }];
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    self.confirmAction = [UIAlertAction actionWithTitle:@"提交" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        NSDictionary *dict = @{@"title": self.bookTextField.text,
+                               @"content": self.summaryTextField.text};
+        Feed *feed = [[Feed alloc] initWithDictionary:dict];
+        [self.feedHolder addFeed:feed atIndex:0];
+    }];
+    [self.confirmAction setValue:[UIColor blueColor] forKey:@"titleTextColor"];
+    self.confirmAction.enabled = NO;
+    [alert addAction:self.confirmAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)inputText:(UITextField *)textField
+{
+    if (self.bookTextField.text.length > 0 && self.summaryTextField.text.length > 0) {
+        self.confirmAction.enabled = YES;
+    } else {
+        self.confirmAction.enabled = NO;
     }
 }
 
-- (void)delete
+- (void)deleteAtIndex:(NSUInteger)index
 {
-    if (self.feedHolder.feeds.count > 0) {
-        [self.feedHolder removeAtIndex:0];
+    if (self.feedHolder.feeds.count > index) {
+        [self.feedHolder removeAtIndex:index];
     }
 }
 
@@ -102,12 +128,12 @@ static NSString * const cellID = @"adaptiveCell";
     switch (behavior.behaviorType) {
         case InsertRow: {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:behavior.index inSection:0];
-            [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
             break;
         }
         case deleteRow: {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:behavior.index inSection:0];
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
             break;
         }
         case reloadRows: {
@@ -154,8 +180,20 @@ static NSString * const cellID = @"adaptiveCell";
     return UITableViewAutomaticDimension;
 }
 
+- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIContextualAction *deleteAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleNormal title:@"删除" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+        [self deleteAtIndex:indexPath.row];
+        completionHandler(YES);
+    }];
+    deleteAction.backgroundColor = [UIColor redColor];
+    
+    return [UISwipeActionsConfiguration configurationWithActions:@[deleteAction]];
+}
+
 #pragma mark - getter & setter
-- (UITableView *)tableView {
+- (UITableView *)tableView
+{
     if (_tableView == nil) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);

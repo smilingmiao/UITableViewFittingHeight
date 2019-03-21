@@ -2,8 +2,8 @@
 //  CommonData.h
 //  AdaptiveCell
 //
-//  Created by Yongxiang Miao on 2019/3/21.
-//  Copyright © 2019 zebra-c. All rights reserved.
+//  Created by smilingmiao on 2019/3/21.
+//  Copyright © 2019 smilingmiao. All rights reserved.
 //
 
 #ifndef CommonData_h
