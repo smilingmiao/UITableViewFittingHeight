@@ -55,7 +55,7 @@ static NSString * const cellID = @"adaptiveCell";
     [self.view addConstraint:[self.tableView.topAnchor constraintEqualToAnchor:self.view.topAnchor]];
     [self.view addConstraint:[self.tableView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor]];
     [self.view addConstraint:[self.tableView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor]];
-    [self.view addConstraint:[self.tableView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor]];
+    [self.view addConstraint:[self.tableView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-35]];
 }
 
 #pragma mark - private method
@@ -112,7 +112,7 @@ static NSString * const cellID = @"adaptiveCell";
 
 - (void)deleteAtIndex:(NSUInteger)index
 {
-    if (self.feedHolder.feeds.count > index) {
+    if (self.feedHolder.count > index) {
         [self.feedHolder removeAtIndex:index];
     }
 }
@@ -147,14 +147,9 @@ static NSString * const cellID = @"adaptiveCell";
 }
 
 #pragma mark - table view data source
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return (NSInteger)self.feedHolder.feeds.count;
+    return (NSInteger)self.feedHolder.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -162,13 +157,13 @@ static NSString * const cellID = @"adaptiveCell";
     UITableViewCell *cell = nil;
     if (_isUseXib) {
         cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-        [(AdaptiveTableViewCell *)cell setFeed:self.feedHolder.feeds[indexPath.row]];
+        [(AdaptiveTableViewCell *)cell setFeed:[self.feedHolder feed:indexPath.row]];
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
         if (cell == nil) {
             cell = [[PureCodeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         }
-        [(PureCodeTableViewCell *)cell bindData:self.feedHolder.feeds[indexPath.row]];
+        [(PureCodeTableViewCell *)cell bindData:[self.feedHolder feed:indexPath.row]];
     }
     
     return cell;
