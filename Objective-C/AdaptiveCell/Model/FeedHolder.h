@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addFeed:(Feed *)feed atIndex:(NSUInteger)index;
 - (void)removeAtIndex:(NSUInteger)index;
+- (Feed *)feed:(NSInteger)atIndex;
+- (NSUInteger)count;
 
 @end
 

@@ -73,6 +73,19 @@
     [self postWithBehavior:[self.behavior setBehaviorType:deleteRow atIndex:index]];
 }
 
+- (Feed *)feed:(NSInteger)atIndex
+{
+    if (atIndex < self.count) {
+        return self.feeds[atIndex];
+    }
+    return nil;
+}
+
+- (NSUInteger)count
+{
+    return self.feeds.count;
+}
+
 @end
 
 @implementation Feed
