@@ -41,7 +41,7 @@ static NSString * const cellID = @"adaptiveCell";
     [self.view addSubview:self.tableView];
 
     /// 注册 xib 还是纯代码，其中纯代码又分用 Masonry 和用 iOS 自带 AutoLayout，这个需要在 `PureCodeTableViewCell` 中设置。
-    [self registerWithXib:NO];
+    [self registerWithXib:YES];
     
     self.feedHolder = [[FeedHolder alloc] init];
     [self.feedHolder buildData];
