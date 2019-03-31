@@ -16,6 +16,7 @@
 		7DD023CC224F39BA00C992F4 /* AdaptiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD023CA224F39BA00C992F4 /* AdaptiveTableViewCell.swift */; };
 		7DD023CD224F39BA00C992F4 /* AdaptiveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DD023CB224F39BA00C992F4 /* AdaptiveTableViewCell.xib */; };
 		7DD023CF224F3ABF00C992F4 /* FeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD023CE224F3ABF00C992F4 /* FeedStore.swift */; };
+		7DD023D4224FCA2400C992F4 /* PureCodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD023D3224FCA2400C992F4 /* PureCodeTableViewCell.swift */; };
 		9527081B18885938D6D1F984 /* Pods_AdaptiveCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39759E915CC84AA2D076287B /* Pods_AdaptiveCell.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		7DD023CA224F39BA00C992F4 /* AdaptiveTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveTableViewCell.swift; sourceTree = "<group>"; };
 		7DD023CB224F39BA00C992F4 /* AdaptiveTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdaptiveTableViewCell.xib; sourceTree = "<group>"; };
 		7DD023CE224F3ABF00C992F4 /* FeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStore.swift; sourceTree = "<group>"; };
+		7DD023D3224FCA2400C992F4 /* PureCodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PureCodeTableViewCell.swift; sourceTree = "<group>"; };
 		FE160A371D3797E6C7574C89 /* Pods-AdaptiveCell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdaptiveCell.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AdaptiveCell/Pods-AdaptiveCell.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,6 +130,7 @@
 			children = (
 				7DD023CA224F39BA00C992F4 /* AdaptiveTableViewCell.swift */,
 				7DD023CB224F39BA00C992F4 /* AdaptiveTableViewCell.xib */,
+				7DD023D3224FCA2400C992F4 /* PureCodeTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DD023CC224F39BA00C992F4 /* AdaptiveTableViewCell.swift in Sources */,
+				7DD023D4224FCA2400C992F4 /* PureCodeTableViewCell.swift in Sources */,
 				7DD023B7224F35D100C992F4 /* ViewController.swift in Sources */,
 				7DD023B5224F35D100C992F4 /* AppDelegate.swift in Sources */,
 				7DD023CF224F3ABF00C992F4 /* FeedStore.swift in Sources */,

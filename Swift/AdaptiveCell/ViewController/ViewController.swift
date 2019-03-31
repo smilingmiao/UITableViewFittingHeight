@@ -12,6 +12,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   
   private var tableView: UITableView!
   private var store: FeedStore!
+  private var isXib = false
+  private let reuseIdentifier = "FeedCell"
   
   private weak var bookTextField: UITextField?
   private weak var summaryTextField: UITextField?
@@ -24,6 +26,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     NotificationCenter.default.addObserver(self, selector: #selector(feedItemDidChange), name: .feedStoreDidChangeNotification, object: nil)
     
+    /// when use xib, assign `true` to `isXib`
+    isXib = true
     setupTableView()
     store = FeedStore()
   }
@@ -48,9 +52,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     tableView.sectionHeaderHeight = 0
     tableView.sectionFooterHeight = 0
     
-    let nibName = UINib(nibName: "AdaptiveTableViewCell", bundle: nil)
-    tableView.register(nibName, forCellReuseIdentifier: "FeedCell")
+    if isXib { // register nib
+      let nibName = UINib(nibName: "AdaptiveTableViewCell", bundle: nil)
+      tableView.register(nibName, forCellReuseIdentifier: reuseIdentifier)
     
+    } else { // register cell
+      tableView.register(PureCodeTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+    }
     view.addSubview(tableView)
   }
   
@@ -116,12 +124,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as? AdaptiveTableViewCell {
-      if indexPath.row >= 0 && indexPath.row < store.count {
-        cell.bindData(current: store.item(at: indexPath.row))
+    if isXib {
+      if let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? AdaptiveTableViewCell {
+        if indexPath.row >= 0 && indexPath.row < store.count {
+          cell.bindData(current: store.item(at: indexPath.row))
+        }
+        return cell
       }
-      return cell
+    } else {
+      if let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? PureCodeTableViewCell {
+        if indexPath.row >= 0 && indexPath.row < store.count {
+          cell.bindData(current: store.item(at: indexPath.row))
+        }
+        return cell
+      }
     }
+    
     return UITableViewCell()
   }
   
@@ -130,6 +148,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   }
   
   func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    
     let contextualAction = UIContextualAction(style: .normal, title: "删除") { (_, _, done) in
       self.store.remove(at: indexPath.row)
       done(true)
