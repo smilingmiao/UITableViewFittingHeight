@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FeedHolder : NSObject
+@interface FeedStore : NSObject
 
 - (instancetype)init;
 + (instancetype)new NS_UNAVAILABLE;

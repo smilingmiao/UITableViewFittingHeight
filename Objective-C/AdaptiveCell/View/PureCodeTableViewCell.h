@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FeedHolder.h"
+#import "FeedStore.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

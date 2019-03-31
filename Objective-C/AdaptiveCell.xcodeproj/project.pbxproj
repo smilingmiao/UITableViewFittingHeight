@@ -17,7 +17,7 @@
 		14DD2592223F83F400B3EC1E /* AdaptiveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD2590223F83F400B3EC1E /* AdaptiveTableViewCell.m */; };
 		14DD2593223F83F400B3EC1E /* AdaptiveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14DD2591223F83F400B3EC1E /* AdaptiveTableViewCell.xib */; };
 		14DD2596223F875A00B3EC1E /* PureCodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD2595223F875A00B3EC1E /* PureCodeTableViewCell.m */; };
-		7DD9977622427893005A4185 /* FeedHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD9977522427893005A4185 /* FeedHolder.m */; };
+		7DD023D622506ACA00C992F4 /* FeedStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD023D522506ACA00C992F4 /* FeedStore.m */; };
 		E9EAAB624684E0575DA46A92 /* libPods-AdaptiveCell.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65553BDFC098D83677F8C3CB /* libPods-AdaptiveCell.a */; };
 /* End PBXBuildFile section */
 
@@ -40,8 +40,8 @@
 		14DD2595223F875A00B3EC1E /* PureCodeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PureCodeTableViewCell.m; sourceTree = "<group>"; };
 		59A357A30B9AA38732BF2840 /* Pods-AdaptiveCell.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdaptiveCell.release.xcconfig"; path = "Pods/Target Support Files/Pods-AdaptiveCell/Pods-AdaptiveCell.release.xcconfig"; sourceTree = "<group>"; };
 		65553BDFC098D83677F8C3CB /* libPods-AdaptiveCell.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AdaptiveCell.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7DD9977422427893005A4185 /* FeedHolder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedHolder.h; sourceTree = "<group>"; };
-		7DD9977522427893005A4185 /* FeedHolder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedHolder.m; sourceTree = "<group>"; };
+		7DD023D522506ACA00C992F4 /* FeedStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedStore.m; sourceTree = "<group>"; };
+		7DD9977422427893005A4185 /* FeedStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedStore.h; sourceTree = "<group>"; };
 		7DD9978A22429F84005A4185 /* CommonData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonData.h; sourceTree = "<group>"; };
 		B30386514E3DD5BE8B3CBE99 /* Pods-AdaptiveCell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdaptiveCell.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AdaptiveCell/Pods-AdaptiveCell.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,8 +124,8 @@
 			children = (
 				140A437B2243899400F4519A /* books.json */,
 				7DD9978A22429F84005A4185 /* CommonData.h */,
-				7DD9977422427893005A4185 /* FeedHolder.h */,
-				7DD9977522427893005A4185 /* FeedHolder.m */,
+				7DD9977422427893005A4185 /* FeedStore.h */,
+				7DD023D522506ACA00C992F4 /* FeedStore.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -249,11 +249,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				14DD2596223F875A00B3EC1E /* PureCodeTableViewCell.m in Sources */,
-				7DD9977622427893005A4185 /* FeedHolder.m in Sources */,
 				14DD2592223F83F400B3EC1E /* AdaptiveTableViewCell.m in Sources */,
 				14DD2578223F434E00B3EC1E /* ViewController.m in Sources */,
 				14DD2583223F435000B3EC1E /* main.m in Sources */,
 				14DD2575223F434E00B3EC1E /* AppDelegate.m in Sources */,
+				7DD023D622506ACA00C992F4 /* FeedStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
