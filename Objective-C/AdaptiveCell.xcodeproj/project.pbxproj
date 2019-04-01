@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		140A437C2243899400F4519A /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = 140A437B2243899400F4519A /* books.json */; };
+		14618D842251AAE900667891 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 14618D822251AAE900667891 /* UIView+Layout.m */; };
 		14DD2575223F434E00B3EC1E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD2574223F434E00B3EC1E /* AppDelegate.m */; };
 		14DD2578223F434E00B3EC1E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD2577223F434E00B3EC1E /* ViewController.m */; };
 		14DD257B223F434E00B3EC1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14DD2579223F434E00B3EC1E /* Main.storyboard */; };
@@ -23,6 +24,8 @@
 
 /* Begin PBXFileReference section */
 		140A437B2243899400F4519A /* books.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = books.json; sourceTree = "<group>"; };
+		14618D822251AAE900667891 /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
+		14618D832251AAE900667891 /* UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
 		14DD2570223F434E00B3EC1E /* AdaptiveCell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdaptiveCell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14DD2573223F434E00B3EC1E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		14DD2574223F434E00B3EC1E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -58,6 +61,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14618D812251AADA00667891 /* categories */ = {
+			isa = PBXGroup;
+			children = (
+				14618D832251AAE900667891 /* UIView+Layout.h */,
+				14618D822251AAE900667891 /* UIView+Layout.m */,
+			);
+			path = categories;
+			sourceTree = "<group>";
+		};
 		14DD2567223F434E00B3EC1E = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +92,7 @@
 		14DD2572223F434E00B3EC1E /* AdaptiveCell */ = {
 			isa = PBXGroup;
 			children = (
+				14618D812251AADA00667891 /* categories */,
 				7D5256A422414B8A00B3F7B6 /* View */,
 				7D5256A322414B7900B3F7B6 /* Model */,
 				7D5256A222414B6200B3F7B6 /* Controller */,
@@ -252,6 +265,7 @@
 				14DD2592223F83F400B3EC1E /* AdaptiveTableViewCell.m in Sources */,
 				14DD2578223F434E00B3EC1E /* ViewController.m in Sources */,
 				14DD2583223F435000B3EC1E /* main.m in Sources */,
+				14618D842251AAE900667891 /* UIView+Layout.m in Sources */,
 				14DD2575223F434E00B3EC1E /* AppDelegate.m in Sources */,
 				7DD023D622506ACA00C992F4 /* FeedStore.m in Sources */,
 			);

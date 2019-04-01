@@ -12,6 +12,8 @@
 #import "FeedStore.h"
 #import "CommonData.h"
 
+#import "UIView+Layout.h"
+
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -55,7 +57,8 @@ static NSString * const cellID = @"adaptiveCell";
   [self.view addConstraint:[self.tableView.topAnchor constraintEqualToAnchor:self.view.topAnchor]];
   [self.view addConstraint:[self.tableView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor]];
   [self.view addConstraint:[self.tableView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor]];
-  [self.view addConstraint:[self.tableView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-35]];
+  CGFloat bottomMargin = self.view.safeAreaBottomMargin;
+  [self.view addConstraint:[self.tableView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-bottomMargin]];
 }
 
 #pragma mark - private method
